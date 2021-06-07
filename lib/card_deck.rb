@@ -21,12 +21,6 @@ class CardDeck
     cards.unshift(card)
   end
 
-  def take_cards_by_rank(rank)
-    taken_cards = cards.filter { |card| card.rank == rank }
-    cards.reject! { |card| card.rank == rank }
-    taken_cards
-  end
-
   private
 
     def default_cards

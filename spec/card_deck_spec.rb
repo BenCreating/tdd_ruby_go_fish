@@ -42,23 +42,4 @@ describe 'CardDeck' do
     top_card = deck.deal
     expect(top_card.rank).not_to eq card.rank
   end
-
-  context '#take_cards_by_rank' do
-    it 'should return a 2 when 1 is in the deck' do
-      deck_cards = [PlayingCard.new('2'), PlayingCard.new('J'), PlayingCard.new('J')]
-      deck = CardDeck.new(deck_cards)
-      found_cards = deck.take_cards_by_rank('2')
-      expect(found_cards.count).to eq 1
-      expect(found_cards[0].rank).to eq '2'
-    end
-
-    it 'should return both Js in the deck' do
-      deck_cards = [PlayingCard.new('2'), PlayingCard.new('J'), PlayingCard.new('J')]
-      deck = CardDeck.new(deck_cards)
-      found_cards = deck.take_cards_by_rank('J')
-      expect(found_cards.count).to eq 2
-      expect(found_cards[0].rank).to eq 'J'
-      expect(found_cards[1].rank).to eq 'J'
-    end
-  end
 end

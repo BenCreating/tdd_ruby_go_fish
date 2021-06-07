@@ -1,7 +1,7 @@
 class GoFishPlayer
   attr_reader :name, :cards
 
-  def initialize(name: 'Anonymous', cards: CardDeck.new([]))
+  def initialize(name: 'Anonymous', cards: PlayerHand.new([]))
     @name = name
     @cards = cards
   end
