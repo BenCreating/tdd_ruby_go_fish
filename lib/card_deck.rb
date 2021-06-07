@@ -5,7 +5,7 @@ class CardDeck
 
   RANKS = %w(A 2 3 4 5 6 7 8 9 10 J Q K)
 
-  def initialize(cards = default_cards())
+  def initialize(cards = default_cards)
     @cards = cards
   end
 
@@ -22,7 +22,7 @@ class CardDeck
   end
 
   def find_cards_by_rank(rank)
-    found_cards = cards.select! { |card| card.rank == rank}
+    cards.select! { |card| card.rank == rank}
   end
 
   private
