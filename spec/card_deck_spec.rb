@@ -49,7 +49,7 @@ describe 'CardDeck' do
       deck = CardDeck.new(deck_cards)
       found_cards = deck.take_cards_by_rank('2')
       expect(found_cards.count).to eq 1
-      expect(found_cards[0]).to eq deck_cards[0]
+      expect(found_cards[0].rank).to eq '2'
     end
 
     it 'should return both Js in the deck' do
@@ -57,25 +57,8 @@ describe 'CardDeck' do
       deck = CardDeck.new(deck_cards)
       found_cards = deck.take_cards_by_rank('J')
       expect(found_cards.count).to eq 2
-      expect(found_cards[1]).to eq deck_cards[1]
-      expect(found_cards[2]).to eq deck_cards[2]
-    end
-  end
-
-  context '#find_cards_by_rank' do
-    let(:deck_cards) { [PlayingCard.new('6'), PlayingCard.new('6'), PlayingCard.new('3')] }
-    let(:deck) { CardDeck.new(deck_cards) }
-
-    it 'returns an array of cards in the deck with the rank 6' do
-      found_cards = deck.find_cards_by_rank('6')
-      expect(found_cards.count).to eq 2
-      expect(found_cards[0]).to eq deck_cards[0]
-      expect(found_cards[1]).to eq deck_cards[1]
-    end
-
-    it 'returns an empty array when no cards are found with the rank' do
-      found_cards = deck.find_cards_by_rank('Q')
-      expect(found_cards.count).to eq 0
+      expect(found_cards[0].rank).to eq 'J'
+      expect(found_cards[1].rank).to eq 'J'
     end
   end
 end
