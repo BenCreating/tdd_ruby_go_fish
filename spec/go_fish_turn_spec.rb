@@ -14,12 +14,12 @@ class MockGoFishPlayer
     cards.add_card(card)
   end
 
-  def give_cards(rank)
+  def give_cards_by_rank(rank)
     cards.take_cards_by_rank(rank)
   end
 
   def take_from(target_player, target_rank)
-    target_player.give_cards(target_rank)
+    target_player.give_cards_by_rank(target_rank)
   end
 end
 
