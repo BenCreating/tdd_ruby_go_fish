@@ -41,13 +41,13 @@ describe 'CardDeck' do
       it 'removes a set and returns true' do
         did_remove_set = deck.remove_set?('2')
         expect(did_remove_set).to eq true
-        expect(deck.cards_left).to eq 3
+        expect(deck.cards_left).to eq card_almost_set.count
       end
 
       it 'does not remove a set and returns false' do
         did_remove_set = deck.remove_set?('8')
         expect(did_remove_set).to eq false
-        expect(deck.cards_left).to eq 7
+        expect(deck.cards_left).to eq card_almost_set.count + card_set_2s.count
       end
     end
 
