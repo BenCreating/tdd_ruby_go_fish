@@ -24,15 +24,13 @@ class MockGoFishPlayer
 end
 
 describe 'GoFishTurn' do
-  before(:each) do
-    @player_1_cards = [PlayingCard.new('5'), PlayingCard.new('7')]
-    @player_2_cards = [PlayingCard.new('K'), PlayingCard.new('2')]
-    @players = [MockGoFishPlayer.new(cards: CardDeck.new(@player_1_cards)), MockGoFishPlayer.new(cards: CardDeck.new(@player_2_cards))]
-  end
+  let(:player_1_cards) { [PlayingCard.new('5'), PlayingCard.new('7')] }
+  let(:player_2_cards) { [PlayingCard.new('K'), PlayingCard.new('2')] }
+  let(:players) { [MockGoFishPlayer.new(cards: CardDeck.new(player_1_cards)), MockGoFishPlayer.new(cards: CardDeck.new(player_2_cards))] }
 
   it 'player 1 asks for cards from player 2 and recieves what they asked for' do
-    turn = GoFishTurn.new(@players[0], @players)
-    taken_cards = turn.turn_player.take_from(@players[1], 'K')
-    expect(taken_cards.first).to eq @player_2_cards.first
+    turn = GoFishTurn.new(players[0], players)
+    taken_cards = turn.turn_player.take_from(players[1], 'K')
+    expect(taken_cards.first).to eq player_2_cards.first
   end
 end

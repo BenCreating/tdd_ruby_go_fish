@@ -33,22 +33,20 @@ describe 'GoFishPlayer' do
   end
 
   context '#take_from' do
-    before(:each) do
-      @player_1_cards = [PlayingCard.new('3'), PlayingCard.new('8')]
-      @player_2_cards = [PlayingCard.new('5'), PlayingCard.new('5')]
-      @player_1 = GoFishPlayer.new(cards: CardDeck.new(@player_1_cards))
-      @player_2 = GoFishPlayer.new(cards: CardDeck.new(@player_2_cards))
-    end
+    let(:player_1_cards) { [PlayingCard.new('3'), PlayingCard.new('8')] }
+    let(:player_2_cards) { [PlayingCard.new('5'), PlayingCard.new('5')] }
+    let(:player_1) { GoFishPlayer.new(cards: CardDeck.new(player_1_cards)) }
+    let(:player_2) { GoFishPlayer.new(cards: CardDeck.new(player_2_cards)) }
 
     it 'asks player 2 for, and recieves, both 5s' do
-      taken_cards = @player_1.take_from(@player_2, '5')
-      expect(taken_cards[0]).to eq @player_2_cards[0]
-      expect(taken_cards[1]).to eq @player_2_cards[1]
+      taken_cards = player_1.take_from(player_2, '5')
+      expect(taken_cards[0]).to eq player_2_cards[0]
+      expect(taken_cards[1]).to eq player_2_cards[1]
     end
 
     it 'asks player 1 for, and recieves, the 3' do
-      taken_cards = @player_2.take_from(@player_1, '3')
-      expect(taken_cards[0]).to eq @player_1_cards[0]
+      taken_cards = player_2.take_from(player_1, '3')
+      expect(taken_cards[0]).to eq player_1_cards[0]
     end
   end
 end
