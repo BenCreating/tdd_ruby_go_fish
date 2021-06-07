@@ -41,6 +41,13 @@ describe 'CardDeck' do
         expect(score).to eq 2
         expect(deck.cards_left).to eq card_non_set.count
       end
+
+      it 'does not remove a set' do
+        deck = PlayerHand.new(card_non_set + card_almost_set)
+        score = deck.remove_card_set_and_return_score
+        expect(score).to eq 0
+        expect(deck.cards_left).to eq card_non_set.count + card_almost_set.count
+      end
     end
 
     context '#remove_set?' do
