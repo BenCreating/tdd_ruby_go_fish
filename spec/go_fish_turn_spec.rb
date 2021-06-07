@@ -28,9 +28,5 @@ describe 'GoFishTurn' do
   let(:player_2_cards) { [PlayingCard.new('K'), PlayingCard.new('2')] }
   let(:players) { [MockGoFishPlayer.new(cards: PlayerHand.new(player_1_cards)), MockGoFishPlayer.new(cards: PlayerHand.new(player_2_cards))] }
 
-  it 'player 1 asks for cards from player 2 and recieves what they asked for' do
-    turn = GoFishTurn.new(players[0], players)
-    taken_cards = turn.turn_player.take_from(players[1], 'K')
-    expect(taken_cards.first.rank).to eq 'K'
-  end
+
 end
