@@ -40,13 +40,13 @@ describe 'GoFishPlayer' do
 
     it 'asks player 2 for, and recieves, both 5s' do
       taken_cards = player_1.take_from(player_2, '5')
-      expect(taken_cards[0]).to eq player_2_cards[0]
-      expect(taken_cards[1]).to eq player_2_cards[1]
+      expect(taken_cards[0].rank).to eq '5'
+      expect(taken_cards[1].rank).to eq '5'
     end
 
     it 'asks player 1 for, and recieves, the 3' do
       taken_cards = player_2.take_from(player_1, '3')
-      expect(taken_cards[0]).to eq player_1_cards[0]
+      expect(taken_cards[0].rank).to eq '3'
     end
   end
 end

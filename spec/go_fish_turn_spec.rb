@@ -31,6 +31,6 @@ describe 'GoFishTurn' do
   it 'player 1 asks for cards from player 2 and recieves what they asked for' do
     turn = GoFishTurn.new(players[0], players)
     taken_cards = turn.turn_player.take_from(players[1], 'K')
-    expect(taken_cards.first).to eq player_2_cards.first
+    expect(taken_cards.first.rank).to eq 'K'
   end
 end
