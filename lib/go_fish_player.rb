@@ -17,4 +17,8 @@ class GoFishPlayer
   def give_cards_by_rank(rank)
     cards.take_cards_by_rank(rank)
   end
+
+  def take_from(target_player, target_rank)
+    target_player.give_cards_by_rank(target_rank)
+  end
 end
