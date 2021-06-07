@@ -11,12 +11,18 @@ class PlayerHand < CardDeck
   def remove_card_set_and_return_score
     score = 0
     RANKS.each do |rank|
-      if full_card_set?(rank)
-        cards.reject! { |card| card.rank == rank }
-        score += 1
-      end
+      score += 1 if remove_set?(rank)
     end
     score
+  end
+
+  def remove_set?(rank)
+    did_remove_set = false
+    if full_card_set?(rank)
+      cards.reject! { |card| card.rank == rank }
+      did_remove_set = true
+    end
+    did_remove_set
   end
 
   def full_card_set?(rank)
