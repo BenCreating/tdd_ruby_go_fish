@@ -27,7 +27,7 @@ describe 'GoFishPlayer' do
   context '#give_cards' do
     let(:player) { player = GoFishPlayer.new(cards: CardDeck.new([PlayingCard.new('2'), PlayingCard.new('J'), PlayingCard.new('3')])) }
     it 'returns an array with 1 card when the player only has one card of a specified rank' do
-      cards = player.give_cards('2')
+      cards = player.give_cards_by_rank('2')
       expect(cards.count).to eq 1
     end
   end

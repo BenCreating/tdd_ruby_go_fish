@@ -14,7 +14,7 @@ class GoFishPlayer
     cards.add_card(card)
   end
 
-  def give_cards(rank)
-    cards.find_cards_by_rank(rank)
+  def give_cards_by_rank(rank)
+    cards.take_cards_by_rank(rank)
   end
 end

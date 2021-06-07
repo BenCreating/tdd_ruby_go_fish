@@ -21,7 +21,7 @@ class CardDeck
     cards.unshift(card)
   end
 
-  def find_cards_by_rank(rank)
+  def take_cards_by_rank(rank)
     cards.select! { |card| card.rank == rank}
   end
 
