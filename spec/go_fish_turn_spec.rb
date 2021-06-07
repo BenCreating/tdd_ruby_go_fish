@@ -15,20 +15,24 @@ class MockGoFishPlayer
   end
 
   def give_cards(rank)
-    cards.find_cards_by_rank(rank)
+    cards.take_cards_by_rank(rank)
+  end
+
+  def take_from(target_player, target_rank)
+    target_player.give_cards(target_rank)
   end
 end
 
 describe 'GoFishTurn' do
   before(:each) do
-    player_1_cards = [PlayingCard.new('K'), PlayingCard.new('2')]
-    player_2_cards = [PlayingCard.new('K'), PlayingCard.new('2')]
-    players = [MockGoFishPlayer.new(cards: CardDeck.new(player_1_cards)), MockGoFishPlayer.new(cards: CardDeck.new(player_2_cards))]
-    turn = GoFishTurn.new(players)
+    @player_1_cards = [PlayingCard.new('5'), PlayingCard.new('7')]
+    @player_2_cards = [PlayingCard.new('K'), PlayingCard.new('2')]
+    @players = [MockGoFishPlayer.new(cards: CardDeck.new(@player_1_cards)), MockGoFishPlayer.new(cards: CardDeck.new(@player_2_cards))]
   end
 
   it 'player 1 asks for cards from player 2 and recieves what they asked for' do
-    taken_cards = turn.player.take_from(players[1], 'K')
-    expect(taken_cards).to eq player_1_cards[0]
+    turn = GoFishTurn.new(@players[0], @players)
+    taken_cards = turn.turn_player.take_from(@players[1], 'K')
+    expect(taken_cards.first).to eq @player_2_cards.first
   end
 end
