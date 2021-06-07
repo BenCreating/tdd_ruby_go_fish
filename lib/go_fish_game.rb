@@ -5,6 +5,7 @@ class GoFishGame
   attr_reader :players, :deck
 
   STARTING_CARD_COUNT = 5
+  CARD_SET_SIZE = 4
 
   def start(players = [GoFishPlayer.new(name: 'Player 1'), GoFishPlayer.new(name: 'Player 2')])
     @players = players
