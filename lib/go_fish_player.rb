@@ -17,4 +17,8 @@ class GoFishPlayer
   def pick_up_card(card)
     cards.add_card(card)
   end
+
+  def give_cards(rank)
+    cards.find_cards_by_rank(rank)
+  end
 end
