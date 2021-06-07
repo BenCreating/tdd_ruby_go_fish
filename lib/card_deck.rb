@@ -23,6 +23,9 @@ class CardDeck
 
   def take_cards_by_rank(rank)
     cards.select! { |card| card.rank == rank}
+  def find_cards_by_rank(rank)
+    cards.filter { |card| card.rank == rank }
+  end
   end
 
   private
