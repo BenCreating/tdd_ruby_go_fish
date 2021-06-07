@@ -42,11 +42,13 @@ describe 'GoFishPlayer' do
       taken_cards = player_1.take_from(player_2, '5')
       expect(taken_cards[0].rank).to eq '5'
       expect(taken_cards[1].rank).to eq '5'
+      expect(player_1.card_count).to eq 4
     end
 
     it 'asks player 1 for, and recieves, the 3' do
       taken_cards = player_2.take_from(player_1, '3')
       expect(taken_cards[0].rank).to eq '3'
+      expect(player_2.card_count).to eq 3
     end
   end
 end
