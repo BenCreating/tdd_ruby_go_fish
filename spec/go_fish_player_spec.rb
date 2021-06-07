@@ -19,15 +19,6 @@ describe 'GoFishPlayer' do
     expect(player2.card_count).to eq 2
   end
 
-  it 'plays the top card from the hand' do
-    player = GoFishPlayer.new(name: 'Alice', cards: CardDeck.new([PlayingCard.new('A'), PlayingCard.new('K')]))
-    played_card = player.play_card
-    expect(played_card.rank).to eq 'K'
-    player2 = GoFishPlayer.new(name: 'Bob', cards: CardDeck.new([PlayingCard.new('2'), PlayingCard.new('3')]))
-    played_card2 = player2.play_card
-    expect(played_card2.rank).to eq '3'
-  end
-
   it 'adds a card to the hand' do
     player = GoFishPlayer.new()
     player.pick_up_card(PlayingCard.new)
