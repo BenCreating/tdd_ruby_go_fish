@@ -21,6 +21,10 @@ class CardDeck
     cards.unshift(card)
   end
 
+  def find_cards_by_rank(rank)
+    found_cards = cards.select! { |card| card.rank == rank}
+  end
+
   private
 
     def default_cards
