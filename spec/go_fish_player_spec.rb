@@ -3,7 +3,6 @@ require_relative '../lib/playing_card'
 require_relative '../lib/card_deck'
 
 describe 'GoFishPlayer' do
-  let(:winning_hand) {  }
   it 'creates a player without specifying attributes' do
     player = GoFishPlayer.new
     expect(player.name).not_to be_nil
@@ -25,7 +24,7 @@ describe 'GoFishPlayer' do
     expect(player.card_count).to eq 1
   end
 
-  context 'give_cards' do
+  context '#give_cards' do
     let(:player) { player = GoFishPlayer.new(cards: CardDeck.new([PlayingCard.new('2'), PlayingCard.new('J'), PlayingCard.new('3')])) }
     it 'returns an array with 1 card when the player only has one card of a specified rank' do
       cards = player.give_cards('2')
