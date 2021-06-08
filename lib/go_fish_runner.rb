@@ -5,4 +5,4 @@ game.start
 until game.winners do
   puts game.next_turn
 end
-puts "#{game.winners.name} wins!"
+puts "#{game.winners} wins!"
