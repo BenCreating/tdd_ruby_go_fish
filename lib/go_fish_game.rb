@@ -38,6 +38,7 @@ class GoFishGame
   def get_current_player
     current_player = players[turn_counter]
     players.count.times do
+      # TODO add intention revealung name
       break if deck.cards_left != 0 or current_player.card_count != 0
       increment_turn_counter
       current_player = players[turn_counter]

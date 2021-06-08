@@ -107,9 +107,12 @@ describe 'GoFishGame' do
       game.start(skip_players, ShufflingDeck.new([]))
       expect(game.get_current_player).to eq skip_players[1]
     end
+
+    # TODO make sure it works when a player goes again
   end
 
   context '#increment_turn_counter' do
+    # TODO make this method private
     let(:players) { [GoFishPlayer.new, GoFishPlayer.new] }
     it 'adds 1 to the turn counter' do
       game.start(players)
