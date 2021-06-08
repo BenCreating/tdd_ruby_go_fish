@@ -56,7 +56,7 @@ describe 'GoFishGame' do
     end
   end
 
-  context '#next_turn' do
+  context '#play_next_turn' do
     def build_deck(ranks)
       cards = ranks.map { |rank| PlayingCard.new(rank) }
       ShufflingDeck.new(cards)
@@ -75,15 +75,15 @@ describe 'GoFishGame' do
 
     it 'plays the next player\'s turn' do
       game.start(two_players, all_match_deck)
-      game.next_turn
+      game.play_next_turn
       expect(two_players[0].score).to eq 1
     end
 
     it 'skips players with no cards when they cannot draw' do
       game.start(three_players, empty_deck)
-      game.next_turn # player 1 turn
+      game.play_next_turn # player 1 turn
       # player 2 has no cards
-      game.next_turn # player 3 turn
+      game.play_next_turn # player 3 turn
       expect(three_players[2].score).to eq 1
     end
   end
@@ -98,7 +98,7 @@ describe 'GoFishGame' do
 
     it 'return player 2 on the second turn' do
       game.start(players)
-      game.next_turn
+      game.play_next_turn
       expect(game.get_current_player).to eq players[1]
     end
 

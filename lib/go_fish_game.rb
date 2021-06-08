@@ -27,7 +27,7 @@ class GoFishGame
     end
   end
 
-  def next_turn
+  def play_next_turn
     current_player = get_current_player
     turn = GoFishTurn.new(current_player, players, deck)
     turn.play
