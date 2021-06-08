@@ -27,5 +27,17 @@ describe 'GoFishTurn' do
       player_2_turn.play(players[2], 'K')
       expect(players[1].card_count).to eq 5
     end
+
+    it 'cards are removed when player 2 asks player 1 for 7 and completes a set' do
+      player_2_turn.play(players[0], '7')
+      expect(players[1].card_count).to eq 2
+      expect(players[1].score).to eq 1
+    end
+
+    it 'score increases when a players completes a set' do
+      player_1_turn.play(players[1], 'K')
+      player_1_turn.play(players[2], 'K')
+      expect(players[0].score).to eq 1
+    end
   end
 end

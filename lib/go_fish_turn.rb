@@ -8,5 +8,7 @@ class GoFishTurn
 
   def play(target_player, target_rank = turn_player.cards.deck_ranks[0])
     turn_player.take_from(target_player, target_rank)
+    score = turn_player.cards.remove_card_set_and_return_score
+    turn_player.score += score
   end
 end
