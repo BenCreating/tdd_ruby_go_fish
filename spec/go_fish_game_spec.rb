@@ -128,6 +128,15 @@ describe 'GoFishGame' do
     end
   end
 
+  context '#winners' do
+    it 'player 1 wins when they have the highest score' do
+      player_1 = GoFishPlayer.new(score: 5, name: 'Player 1')
+      player_2 = GoFishPlayer.new(score: 0, name: 'Player 2')
+      game.start([player_1, player_2], ShufflingDeck.new([]))
+      winner_array = game.winners
+      expect(winner_array).to match_array [player_1]
+    end
+  end
   context '#all_players_out_of_cards?' do
     let(:two_players_no_cards) { [GoFishPlayer.new, GoFishPlayer.new] }
     let(:three_players_no_cards) { [GoFishPlayer.new, GoFishPlayer.new, GoFishPlayer.new] }

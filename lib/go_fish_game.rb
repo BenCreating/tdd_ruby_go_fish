@@ -46,6 +46,14 @@ class GoFishGame
     current_player
   end
 
+  def winners
+    winners = []
+    if deck.cards_left == 0 and all_players_out_of_cards?
+
+    end
+    winners
+  end
+
   def all_players_out_of_cards?
     players.each do |player|
       if player.card_count != 0
