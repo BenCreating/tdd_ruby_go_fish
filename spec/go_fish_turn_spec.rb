@@ -70,5 +70,12 @@ describe 'GoFishTurn' do
       default_player = turn.default_target_player(current_player)
       expect(default_player).to eq players[1]
     end
+
+    it 'returns player 1 when player 2 is the current player' do
+      current_player = players[1]
+      turn = GoFishTurn.new(current_player, players, deck)
+      default_player = turn.default_target_player(current_player)
+      expect(default_player).to eq players[0]
+    end
   end
 end
