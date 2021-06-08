@@ -45,6 +45,17 @@ class GoFishGame
     current_player
   end
 
+  def all_players_out_of_cards?
+    all_out = true
+    players.each do |player|
+      if player.card_count != 0
+        all_out = false
+        break
+      end
+    end
+    all_out
+  end
+
   def increment_turn_counter
     self.turn_counter = (turn_counter + 1) % players.count
   end

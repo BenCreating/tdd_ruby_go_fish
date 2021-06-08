@@ -124,4 +124,15 @@ describe 'GoFishGame' do
       expect(game.turn_counter).to eq 0
     end
   end
+
+  context '#all_players_out_of_cards?' do
+    let(:two_players_no_cards) { [GoFishPlayer.new, GoFishPlayer.new] }
+    let(:three_players_no_cards) { [GoFishPlayer.new, GoFishPlayer.new, GoFishPlayer.new] }
+
+    it 'returns true for 2 players with no cards' do
+      game.start(two_players_no_cards, ShufflingDeck.new([]))
+      all_out = game.all_players_out_of_cards?
+      expect(all_out).to eq true
+    end
+  end
 end
