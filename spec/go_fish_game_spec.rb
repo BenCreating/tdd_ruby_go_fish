@@ -77,7 +77,6 @@ describe 'GoFishGame' do
 
     it 'skips players with no cards when they cannot draw' do
       game = GoFishGame.new(three_players, empty_deck)
-      game.start
       game.play_next_turn # player 1 turn
       # player 2 has no cards
       game.play_next_turn # player 3 turn
@@ -95,7 +94,6 @@ describe 'GoFishGame' do
 
     it 'return player 2 on the second turn' do
       game = GoFishGame.new(players)
-      game.start
       game.play_next_turn
       expect(game.get_current_player).to eq players[1]
     end
@@ -103,7 +101,6 @@ describe 'GoFishGame' do
     it 'return to player 2 when player 1 has no cards and cannot draw' do
       skip_players = [GoFishPlayer.new(name: 'Player 1'), GoFishPlayer.new(name: 'Player 2', cards: PlayerHand.new([PlayingCard.new('A')]))]
       game = GoFishGame.new(skip_players, ShufflingDeck.new([]))
-      game.start
       expect(game.get_current_player).to eq skip_players[1]
     end
 
@@ -115,7 +112,6 @@ describe 'GoFishGame' do
       player_1 = GoFishPlayer.new(score: 5, name: 'Player 1')
       player_2 = GoFishPlayer.new(score: 0, name: 'Player 2')
       game = GoFishGame.new([player_1, player_2], ShufflingDeck.new([]))
-      game.start
       winner_array = game.winners
       expect(winner_array).to match_array [player_1]
     end
@@ -126,7 +122,6 @@ describe 'GoFishGame' do
       player_1 = GoFishPlayer.new(score: 5, name: 'Player 1')
       player_2 = GoFishPlayer.new(score: 0, name: 'Player 2')
       game = GoFishGame.new([player_1, player_2], ShufflingDeck.new([]))
-      game.start
       winning_players = game.highest_scoring_players
       expect(winning_players).to match_array [player_1]
     end
@@ -136,7 +131,6 @@ describe 'GoFishGame' do
       player_2 = GoFishPlayer.new(score: 5, name: 'Player 2')
       player_3 = GoFishPlayer.new(score: 0, name: 'Player 3')
       game = GoFishGame.new([player_1, player_2, player_3], ShufflingDeck.new([]))
-      game.start
       winning_players = game.highest_scoring_players
       expect(winning_players).to match_array [player_1, player_2]
     end
@@ -148,7 +142,6 @@ describe 'GoFishGame' do
 
     it 'returns true for 2 players with no cards' do
       game = GoFishGame.new(two_players_no_cards, ShufflingDeck.new([]))
-      game.start
       all_out = game.all_players_out_of_cards?
       expect(all_out).to eq true
     end
