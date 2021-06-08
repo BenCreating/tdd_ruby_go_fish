@@ -78,4 +78,24 @@ describe 'GoFishTurn' do
       expect(default_player).to eq players[0]
     end
   end
+
+  context '#fish_card_from_deck' do
+    let(:fishing_players) { [GoFishPlayer.new, GoFishPlayer.new] }
+
+    it 'draws the top card (7) from the deck' do
+      target_card = PlayingCard.new('7')
+      fishing_deck = CardDeck.new([PlayingCard.new('A'), target_card])
+      turn = GoFishTurn.new(fishing_players[0], fishing_players, fishing_deck)
+      expect(turn.fish_card_from_deck).to eq target_card
+      expect(fishing_deck.cards_left).to eq 1
+    end
+
+    it 'draws the top card (J) from the deck' do
+      target_card = PlayingCard.new('J')
+      fishing_deck = CardDeck.new([PlayingCard.new('9'), target_card])
+      turn = GoFishTurn.new(fishing_players[0], fishing_players, fishing_deck)
+      expect(turn.fish_card_from_deck).to eq target_card
+      expect(fishing_deck.cards_left).to eq 1
+    end
+  end
 end

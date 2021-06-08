@@ -24,6 +24,10 @@ class GoFishTurn
     end
   end
 
+  def fish_card_from_deck
+    deck.deal
+  end
+
   def default_target_player(current_player)
     possible_players = all_players.reject { |player| player == current_player }
     possible_players[0]
