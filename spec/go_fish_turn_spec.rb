@@ -105,7 +105,7 @@ describe 'GoFishTurn' do
     it 'removes and scores sets in hand' do
       player = GoFishPlayer.new(cards: player_hand)
       turn = GoFishTurn.new(player, [player], deck)
-      turn.resolve_turn
+      turn.resolve_turn(['taken cards']) # this just needs to pass in a non-empty array
       expect(player.card_count).to eq 0
       expect(player.score).to eq 2
     end
