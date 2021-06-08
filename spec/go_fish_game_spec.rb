@@ -63,24 +63,33 @@ describe 'GoFishGame' do
     end
 
     let(:no_match_deck) { build_deck((3..50).to_a) }
-    let(:all_match_deck) { build_deck(['A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A']) }
+    let(:all_aces_deck) { build_deck(['A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A']) }
     let(:empty_deck) { ShufflingDeck.new([]) }
     let(:two_players) { [GoFishPlayer.new, GoFishPlayer.new] }
-    let(:three_players) { [GoFishPlayer.new(cards: build_hand(['A', '2'])), GoFishPlayer.new, GoFishPlayer.new(cards: build_hand(['2', '2', '2', 'A']))] }
+    let(:three_players) { [GoFishPlayer.new(cards: build_hand(['A', '2'])), GoFishPlayer.new, GoFishPlayer.new(cards: build_hand(['2', '2', 'A']))] }
 
-    it 'plays the next player\'s turn' do
-      game = GoFishGame.new(two_players, all_match_deck)
-      game.start
+    it 'player 1 takes a turn where they complete a set' do
+      players = [GoFishPlayer.new, GoFishPlayer.new]
+      game = GoFishGame.new(players, all_aces_deck)
+      game.deal_starting_cards
       game.play_next_turn
-      expect(two_players[0].score).to eq 1
+      expect(players[0].score).to eq 1
     end
 
-    it 'skips players with no cards when they cannot draw' do
+    it 'player 1 takes a turn where they must fish' do
+      players = [GoFishPlayer.new, GoFishPlayer.new]
+      game = GoFishGame.new(players, no_match_deck)
+      game.deal_starting_cards
+      game.play_next_turn
+      expect(players[0].card_count).to eq GoFishGame::STARTING_CARD_COUNT + 1
+    end
+
+    it 'skips to player 3 because the deck is empty and player 2 has no cards' do
       game = GoFishGame.new(three_players, empty_deck)
       game.play_next_turn # player 1 turn
       # player 2 has no cards
       game.play_next_turn # player 3 turn
-      expect(three_players[2].score).to eq 1
+      expect(three_players[2].card_count).to eq 4
     end
   end
 
