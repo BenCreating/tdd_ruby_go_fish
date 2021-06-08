@@ -49,7 +49,7 @@ class GoFishGame
   def winners
     winners = []
     if deck.cards_left == 0 and all_players_out_of_cards?
-
+      winners = highest_scoring_players
     end
     winners
   end
