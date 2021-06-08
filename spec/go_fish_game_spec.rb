@@ -186,5 +186,11 @@ describe 'GoFishGame' do
       all_out = game.all_players_out_of_cards?
       expect(all_out).to eq true
     end
+
+    it 'returns true for 3 players with no cards' do
+      game = GoFishGame.new(three_players_no_cards, ShufflingDeck.new([]))
+      all_out = game.all_players_out_of_cards?
+      expect(all_out).to eq true
+    end
   end
 end
