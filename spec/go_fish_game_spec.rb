@@ -55,6 +55,39 @@ describe 'GoFishGame' do
       expect(game.players[2].card_count).to eq GoFishGame::STARTING_CARD_COUNT * 2
     end
   end
+
+  context '#next_turn' do
+    def build_deck(ranks)
+      cards = ranks.map { |rank| PlayingCard.new(rank) }
+      ShufflingDeck.new(cards)
+    end
+
+    def build_hand(ranks)
+      cards = ranks.map { |rank| PlayingCard.new(rank) }
+      PlayerHand.new(cards)
+    end
+
+    let(:no_match_deck) { build_deck((2..50).to_a) }
+    let(:all_match_deck) { build_deck(['A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A']) }
+    let(:empty_deck) { ShufflingDeck.new([]) }
+    let(:two_players) { [GoFishPlayer.new, GoFishPlayer.new] }
+    let(:three_players) { [GoFishPlayer.new(cards: build_hand(['A', '2'])), GoFishPlayer.new, GoFishPlayer.new(cards: build_hand(['2', '2', '2', 'A']))] }
+
+    it 'plays the next player\'s turn' do
+      game.start(two_players, all_match_deck)
+      game.next_turn
+      expect(two_players[0].score).to eq 1
+    end
+
+    it 'skips players with no cards when they cannot draw' do
+      game.start(three_players, empty_deck)
+      game.next_turn # player 1 turn
+      # player 2 has no cards
+      game.next_turn # player 3 turn
+      expect(three_players[2].score).to eq 1
+    end
+  end
+
   context '#get_current_player' do
     let(:players) { [GoFishPlayer.new, GoFishPlayer.new] }
 

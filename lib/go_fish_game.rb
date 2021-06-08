@@ -26,6 +26,15 @@ class GoFishGame
       end
     end
   end
+
+  def next_turn
+    current_player = get_current_player
+    turn = GoFishTurn.new(current_player, players, deck)
+    turn.play(players[1])
+
+    increment_turn_counter
+  end
+
   def get_current_player
     current_player = players[turn_counter]
     players.count.times do
