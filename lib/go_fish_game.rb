@@ -9,10 +9,13 @@ class GoFishGame
   CARD_SET_SIZE = 4
   REFILL_CARDS_AMOUNT = 1
 
-  def start(players = [GoFishPlayer.new(name: 'Player 1'), GoFishPlayer.new(name: 'Player 2')], deck = ShufflingDeck.new)
+  def initialize(players = [GoFishPlayer.new(name: 'Player 1'), GoFishPlayer.new(name: 'Player 2')], deck = ShufflingDeck.new)
     @turn_counter = 0
     @players = players
     @deck = deck
+  end
+
+  def start
     deck.shuffle
     deal_starting_cards()
   end
