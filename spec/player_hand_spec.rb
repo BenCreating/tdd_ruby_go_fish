@@ -87,5 +87,10 @@ describe 'CardDeck' do
       expect(deck.deck_ranks).to eq ['2', 'J']
       expect(alternate_deck.deck_ranks).to eq ['5', '6', 'K']
     end
+
+    it 'should return an empty array when the deck is empty' do
+      empty_deck = PlayerHand.new([])
+      expect(empty_deck.deck_ranks).to eq []
+    end
   end
 end

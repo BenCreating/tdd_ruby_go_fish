@@ -37,5 +37,6 @@ class PlayerHand < CardDeck
   def deck_ranks
     deck_ranks = cards.map { |card| card.rank }
     deck_ranks.uniq!
+    deck_ranks
   end
 end
