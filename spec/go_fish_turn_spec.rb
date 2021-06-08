@@ -98,4 +98,16 @@ describe 'GoFishTurn' do
       expect(fishing_deck.cards_left).to eq 1
     end
   end
+
+  context '#resolve_turn' do
+    let(:player_hand) { PlayerHand.new([PlayingCard.new('A'), PlayingCard.new('A'), PlayingCard.new('A'), PlayingCard.new('A'), PlayingCard.new('5'), PlayingCard.new('5'), PlayingCard.new('5'), PlayingCard.new('5')]) }
+
+    it 'removes and scores sets in hand' do
+      player = GoFishPlayer.new(cards: player_hand)
+      turn = GoFishTurn.new(player, [player], deck)
+      turn.resolve_turn
+      expect(player.card_count).to eq 0
+      expect(player.score).to eq 2
+    end
+  end
 end
