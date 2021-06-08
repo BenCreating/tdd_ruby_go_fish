@@ -67,7 +67,7 @@ describe 'GoFishGame' do
       PlayerHand.new(cards)
     end
 
-    let(:no_match_deck) { build_deck((2..50).to_a) }
+    let(:no_match_deck) { build_deck((3..50).to_a) }
     let(:all_match_deck) { build_deck(['A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A']) }
     let(:empty_deck) { ShufflingDeck.new([]) }
     let(:two_players) { [GoFishPlayer.new, GoFishPlayer.new] }
