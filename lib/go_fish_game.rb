@@ -41,8 +41,7 @@ class GoFishGame
   def get_current_player
     current_player = players[turn_counter]
     players.count.times do
-      # TODO add intention revealung name
-      break if deck.cards_left != 0 or current_player.card_count != 0
+      break if deck_and_player_hand_empty?(current_player)
       increment_turn_counter
       current_player = players[turn_counter]
     end
@@ -76,5 +75,9 @@ class GoFishGame
   private
   def increment_turn_counter
     self.turn_counter = (turn_counter + 1) % players.count
+  end
+
+  def deck_and_player_hand_empty?(player)
+    deck.cards_left != 0 or player.card_count != 0
   end
 end
