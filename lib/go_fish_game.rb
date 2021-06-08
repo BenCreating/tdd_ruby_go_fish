@@ -19,7 +19,11 @@ class GoFishGame
 
   def deal_starting_cards
     players.each do |player|
-      STARTING_CARD_COUNT.times { player.pick_up_card(deck.deal) }
+      STARTING_CARD_COUNT.times do
+        if deck.cards_left > 0
+          player.pick_up_card(deck.deal)
+        end
+      end
     end
   end
   def get_current_player
