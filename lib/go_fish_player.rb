@@ -1,9 +1,11 @@
 class GoFishPlayer
   attr_reader :name, :cards
+  attr_accessor :score
 
-  def initialize(name: 'Anonymous', cards: PlayerHand.new([]))
+  def initialize(name: 'Anonymous', cards: PlayerHand.new([]), score: 0)
     @name = name
     @cards = cards
+    @score = score
   end
 
   def card_count
