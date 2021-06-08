@@ -22,5 +22,10 @@ describe 'GoFishTurn' do
       player_1_turn.play(players[1], 'K')
       expect(players[0].card_count).to eq 5
     end
+
+    it 'player 2 asks player 3 for K, and recieves 2 cards' do
+      player_2_turn.play(players[2], 'K')
+      expect(players[1].card_count).to eq 5
+    end
   end
 end
