@@ -63,6 +63,15 @@ class GoFishGame
     end
     true
   end
+
+  def highest_scoring_players
+    highest_score_players = []
+    players_sorted_by_score = players.sort_by(&:score)
+    check_player = players_sorted_by_score.pop
+    if highest_score_players.empty? or highest_score_players[0].score == check_player.score
+      highest_score_players << check_player
+    end
+    highest_score_players
   end
 
   def increment_turn_counter

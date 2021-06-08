@@ -137,6 +137,26 @@ describe 'GoFishGame' do
       expect(winner_array).to match_array [player_1]
     end
   end
+
+  context '#highest_scoring_players' do
+    it 'returns player 1 when only they have the highest score' do
+      player_1 = GoFishPlayer.new(score: 5, name: 'Player 1')
+      player_2 = GoFishPlayer.new(score: 0, name: 'Player 2')
+      game.start([player_1, player_2], ShufflingDeck.new([]))
+      winning_players = game.highest_scoring_players
+      expect(winning_players).to match_array [player_1]
+    end
+
+    it 'returns player 1 and player 2 when they are tied for the highest score' do
+      player_1 = GoFishPlayer.new(score: 5, name: 'Player 1')
+      player_2 = GoFishPlayer.new(score: 5, name: 'Player 2')
+      player_3 = GoFishPlayer.new(score: 0, name: 'Player 3')
+      game.start([player_1, player_2, player_3], ShufflingDeck.new([]))
+      winning_players = game.highest_scoring_players
+      expect(winning_players).to match_array [player_1, player_2]
+    end
+  end
+
   context '#all_players_out_of_cards?' do
     let(:two_players_no_cards) { [GoFishPlayer.new, GoFishPlayer.new] }
     let(:three_players_no_cards) { [GoFishPlayer.new, GoFishPlayer.new, GoFishPlayer.new] }
