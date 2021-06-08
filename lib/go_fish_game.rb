@@ -3,6 +3,7 @@ require_relative 'shuffling_deck'
 
 class GoFishGame
   attr_reader :players, :deck
+  attr_accessor :turn_counter
 
   STARTING_CARD_COUNT = 5
   CARD_SET_SIZE = 4
@@ -18,5 +19,8 @@ class GoFishGame
     players.each do |player|
       STARTING_CARD_COUNT.times { player.pick_up_card(deck.deal) }
     end
+  end
+  def increment_turn_counter
+    self.turn_counter = (turn_counter + 1) % players.count
   end
 end

@@ -52,4 +52,19 @@ describe 'GoFishGame' do
       expect(game.players[2].card_count).to eq GoFishGame::STARTING_CARD_COUNT * 2
     end
   end
+  context '#increment_turn_counter' do
+    let(:players) { [GoFishPlayer.new, GoFishPlayer.new] }
+    it 'adds 1 to the turn counter' do
+      game.start(players)
+      game.increment_turn_counter
+      expect(game.turn_counter).to eq 1
+    end
+
+    it 'wraps the turn counter when when it is more than the number of players' do
+      game.start(players)
+      game.increment_turn_counter
+      game.increment_turn_counter
+      expect(game.turn_counter).to eq 0
+    end
+  end
 end
