@@ -7,8 +7,13 @@ class MockGoFishPlayer
   end
 end
 
-describe 'GoFishTurnResult' do
-  it 'generates a description of a player winning a card' do
 
+
+describe 'GoFishTurnResult' do
+  it 'generates a description of a player taking a card from another player' do
+    taking_player = MockGoFishPlayer.new('Alice')
+    giving_player = MockGoFishPlayer.new('Bob')
+    taken_cards = [MockGoFishCards]
+    turn_result = GoFishTurnResult(turn_player: taking_player, target_player: giving_player, taken_cards: taken_cards)
   end
 end
