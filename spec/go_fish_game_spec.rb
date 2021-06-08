@@ -104,7 +104,14 @@ describe 'GoFishGame' do
       expect(game.get_current_player).to eq skip_players[1]
     end
 
-    # TODO make sure it works when a player goes again
+    it 'gives player 1 another turn if they get a card from another player' do
+      players = [GoFishPlayer.new(name: 'Player 1', cards: PlayerHand.new([PlayingCard.new('A')])), GoFishPlayer.new(name: 'Player 2', cards: PlayerHand.new([PlayingCard.new('A')]))]
+      game = GoFishGame.new(players, ShufflingDeck.new([]))
+      game.play_next_turn
+      expect(game.get_current_player).to eq players[0]
+      game.play_next_turn
+      expect(game.get_current_player).to eq players[0]
+    end
   end
 
   context '#winners' do
