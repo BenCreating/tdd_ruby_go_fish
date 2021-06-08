@@ -13,6 +13,11 @@ describe 'GoFishTurn' do
     let(:player_1_turn) { GoFishTurn.new(players[0], players) }
     let(:player_2_turn) { GoFishTurn.new(players[1], players) }
 
+    it 'rank defaults to the first card in the hand of player 1 (K)' do
+      player_1_turn.play(players[1])
+      expect(players[0].card_count).to eq 5
+    end
+
     it 'player 1 asks player 2 for K, and recieves a card' do
       player_1_turn.play(players[1], 'K')
       expect(players[0].card_count).to eq 5
