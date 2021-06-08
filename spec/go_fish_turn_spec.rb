@@ -44,13 +44,13 @@ describe 'GoFishTurn' do
       expect(players[0].score).to eq 1
     end
 
-    it 'draws a card at the start of a turn when the player has none' do
-      # empty hand
+    it 'player 3 draws a card at the start of thier turn because they have none, and then must go fish' do
+      # empty out the player hand
       player_3_turn.play(players[0], 'K')
       player_3_turn.play(players[1], 'K')
       # try to play without a card
       player_3_turn.play(players[1])
-      expect(players[2].cards.cards_left).to eq 1
+      expect(players[2].cards.cards_left).to eq 2
     end
   end
 
