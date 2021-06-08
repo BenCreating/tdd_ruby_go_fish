@@ -62,4 +62,13 @@ describe 'GoFishTurn' do
       expect(empty_player.cards.cards_left).to eq GoFishGame::REFILL_CARDS_AMOUNT
     end
   end
+
+  context '#default_target_player' do
+    it 'returns the first player (player 2) that is not the current player (player 1)' do
+      current_player = players[0]
+      turn = GoFishTurn.new(current_player, players, deck)
+      default_player = turn.default_target_player(current_player)
+      expect(default_player).to eq players[1]
+    end
+  end
 end

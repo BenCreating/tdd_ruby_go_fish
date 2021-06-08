@@ -1,7 +1,7 @@
 require_relative 'go_fish_game'
 
 class GoFishTurn
-  attr_reader :turn_player, :deck
+  attr_reader :turn_player, :all_players, :deck
 
   def initialize(turn_player, all_players, deck)
     @turn_player = turn_player
@@ -22,5 +22,10 @@ class GoFishTurn
         player.pick_up_card(deck.deal)
       end
     end
+  end
+
+  def default_target_player(current_player)
+    possible_players = all_players.reject { |player| player == current_player }
+    possible_players[0]
   end
 end
