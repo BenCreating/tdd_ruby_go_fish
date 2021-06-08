@@ -122,6 +122,40 @@ describe 'GoFishGame' do
       winner_array = game.winners
       expect(winner_array).to match_array [player_1]
     end
+
+    it 'player 3 wins when they have the highest score' do
+      player_1 = GoFishPlayer.new(score: 3, name: 'Player 1')
+      player_2 = GoFishPlayer.new(score: 4, name: 'Player 2')
+      player_3 = GoFishPlayer.new(score: 7, name: 'Player 3')
+      game = GoFishGame.new([player_1, player_2, player_3], ShufflingDeck.new([]))
+      winner_array = game.winners
+      expect(winner_array).to match_array [player_3]
+    end
+
+    it 'player 1 and player 3 tie when they both have the highest score' do
+      player_1 = GoFishPlayer.new(score: 5, name: 'Player 1')
+      player_2 = GoFishPlayer.new(score: 2, name: 'Player 2')
+      player_3 = GoFishPlayer.new(score: 5, name: 'Player 3')
+      game = GoFishGame.new([player_1, player_2, player_3], ShufflingDeck.new([]))
+      winner_array = game.winners
+      expect(winner_array).to match_array [player_1, player_3]
+    end
+
+    it 'returns nil when there are still cards in the deck' do
+      player_1 = GoFishPlayer.new(score: 5, name: 'Player 1')
+      player_2 = GoFishPlayer.new(score: 0, name: 'Player 2')
+      game = GoFishGame.new([player_1, player_2], ShufflingDeck.new)
+      winner_array = game.winners
+      expect(winner_array).to eq nil
+    end
+
+    it 'returns nil when any player still has cards' do
+      player_1 = GoFishPlayer.new(score: 5, name: 'Player 1', cards: PlayerHand.new([PlayingCard.new('A')]))
+      player_2 = GoFishPlayer.new(score: 0, name: 'Player 2')
+      game = GoFishGame.new([player_1, player_2], ShufflingDeck.new([]))
+      winner_array = game.winners
+      expect(winner_array).to eq nil
+    end
   end
 
   context '#highest_scoring_players' do
