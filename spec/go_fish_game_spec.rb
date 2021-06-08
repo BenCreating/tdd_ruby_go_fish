@@ -33,4 +33,23 @@ describe 'GoFishGame' do
       expect(player_3_card_count).to eq GoFishGame::STARTING_CARD_COUNT
     end
   end
+
+  context '#deal_starting_cards' do
+    it 'deals cards to 2 players' do
+      game.start([GoFishPlayer.new, GoFishPlayer.new])
+      game.deal_starting_cards
+      # the deck is dealt twice, once in start (where the deck is initialized), and once when we call deal_starting_cards
+      expect(game.players[0].card_count).to eq GoFishGame::STARTING_CARD_COUNT * 2
+      expect(game.players[1].card_count).to eq GoFishGame::STARTING_CARD_COUNT * 2
+    end
+
+    it 'deals cards to 3 players' do
+      game.start([GoFishPlayer.new, GoFishPlayer.new, GoFishPlayer.new])
+      game.deal_starting_cards
+      # the deck is dealt twice, once in start (where the deck is initialized), and once when we call deal_starting_cards
+      expect(game.players[0].card_count).to eq GoFishGame::STARTING_CARD_COUNT * 2
+      expect(game.players[1].card_count).to eq GoFishGame::STARTING_CARD_COUNT * 2
+      expect(game.players[2].card_count).to eq GoFishGame::STARTING_CARD_COUNT * 2
+    end
+  end
 end
