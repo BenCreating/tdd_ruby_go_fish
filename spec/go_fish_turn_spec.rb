@@ -9,5 +9,13 @@ describe 'GoFishTurn' do
   let(:player_3_cards) { [PlayingCard.new('K'), PlayingCard.new('K')] }
   let(:players) { [GoFishPlayer.new(cards: PlayerHand.new(player_1_cards)), GoFishPlayer.new(cards: PlayerHand.new(player_2_cards)), GoFishPlayer.new(cards: PlayerHand.new(player_3_cards))] }
 
+  context '#play' do
+    let(:player_1_turn) { GoFishTurn.new(players[0], players) }
+    let(:player_2_turn) { GoFishTurn.new(players[1], players) }
 
+    it 'player 1 asks player 2 for K, and recieves a card' do
+      player_1_turn.play(players[1], 'K')
+      expect(players[0].card_count).to eq 5
+    end
+  end
 end

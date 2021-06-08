@@ -6,11 +6,7 @@ class GoFishTurn
     @all_players = all_players
   end
 
-  # def play_round
-  #   table_cards = play_all_round_cards()
-  #   self.last_round_table_cards = table_cards
-  #   round_result = WarRoundResult.new(table_cards, players)
-  #   award_cards_to_winner(round_result.winner, table_cards)
-  #   round_result.description
-  # end
+  def play(target_player, target_rank = turn_player.cards[0].rank)
+    turn_player.take_from(target_player, target_rank)
+  end
 end
