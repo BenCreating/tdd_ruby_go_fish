@@ -111,23 +111,6 @@ describe 'GoFishGame' do
     # TODO make sure it works when a player goes again
   end
 
-  context '#increment_turn_counter' do
-    # TODO make this method private
-    let(:players) { [GoFishPlayer.new, GoFishPlayer.new] }
-    it 'adds 1 to the turn counter' do
-      game.start(players)
-      game.increment_turn_counter
-      expect(game.turn_counter).to eq 1
-    end
-
-    it 'wraps the turn counter when when it is more than the number of players' do
-      game.start(players)
-      game.increment_turn_counter
-      game.increment_turn_counter
-      expect(game.turn_counter).to eq 0
-    end
-  end
-
   context '#winners' do
     it 'player 1 wins when they have the highest score' do
       player_1 = GoFishPlayer.new(score: 5, name: 'Player 1')

@@ -70,6 +70,7 @@ class GoFishGame
     players.filter { |player| player.score == highest_score }
   end
 
+  private
   def increment_turn_counter
     self.turn_counter = (turn_counter + 1) % players.count
   end
