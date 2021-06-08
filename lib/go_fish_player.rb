@@ -1,3 +1,5 @@
+require_relative 'player_hand'
+
 class GoFishPlayer
   attr_reader :name, :cards
   attr_accessor :score
