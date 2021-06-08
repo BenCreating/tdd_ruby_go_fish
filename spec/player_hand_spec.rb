@@ -80,4 +80,12 @@ describe 'CardDeck' do
       end
     end
   end
+
+  context '#deck_ranks' do
+    it 'should return an array of ranks contained in the deck' do
+      alternate_deck = PlayerHand.new([PlayingCard.new('5'), PlayingCard.new('6'), PlayingCard.new('K'), PlayingCard.new('K')])
+      expect(deck.deck_ranks).to eq ['2', 'J']
+      expect(alternate_deck.deck_ranks).to eq ['5', '6', 'K']
+    end
+  end
 end
