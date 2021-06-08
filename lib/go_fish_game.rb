@@ -6,6 +6,7 @@ class GoFishGame
 
   STARTING_CARD_COUNT = 5
   CARD_SET_SIZE = 4
+  REFILL_CARDS_AMOUNT = 1
 
   def start(players = [GoFishPlayer.new(name: 'Player 1'), GoFishPlayer.new(name: 'Player 2')])
     @players = players

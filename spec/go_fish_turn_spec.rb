@@ -1,4 +1,6 @@
+require_relative '../lib/go_fish_game'
 require_relative '../lib/go_fish_turn'
+require_relative '../lib/card_deck'
 require_relative '../lib/player_hand'
 require_relative '../lib/playing_card'
 require_relative '../lib/go_fish_player'
@@ -8,10 +10,12 @@ describe 'GoFishTurn' do
   let(:player_2_cards) { [PlayingCard.new('K'), PlayingCard.new('2'), PlayingCard.new('7')] }
   let(:player_3_cards) { [PlayingCard.new('K'), PlayingCard.new('K')] }
   let(:players) { [GoFishPlayer.new(cards: PlayerHand.new(player_1_cards)), GoFishPlayer.new(cards: PlayerHand.new(player_2_cards)), GoFishPlayer.new(cards: PlayerHand.new(player_3_cards))] }
+  let(:deck) { CardDeck.new }
 
   context '#play' do
-    let(:player_1_turn) { GoFishTurn.new(players[0], players) }
-    let(:player_2_turn) { GoFishTurn.new(players[1], players) }
+    let(:player_1_turn) { GoFishTurn.new(players[0], players, deck) }
+    let(:player_2_turn) { GoFishTurn.new(players[1], players, deck) }
+    let(:player_3_turn) { GoFishTurn.new(players[2], players, deck) }
 
     it 'rank defaults to the first card in the hand of player 1 (K)' do
       player_1_turn.play(players[1])
@@ -38,6 +42,24 @@ describe 'GoFishTurn' do
       player_1_turn.play(players[1], 'K')
       player_1_turn.play(players[2], 'K')
       expect(players[0].score).to eq 1
+    end
+
+    it 'draws a card at the start of a turn when the player has none' do
+      # empty hand
+      player_3_turn.play(players[0], 'K')
+      player_3_turn.play(players[1], 'K')
+      # try to play without a card
+      player_3_turn.play(players[1])
+      expect(players[2].cards.cards_left).to eq 1
+    end
+  end
+
+  context '#refill_hand' do
+    let(:empty_player) { GoFishPlayer.new }
+    let(:turn) { GoFishTurn.new(empty_player, [empty_player], deck) }
+    it 'draws a card and adds it to the hand' do
+      turn.refill_hand(empty_player)
+      expect(empty_player.cards.cards_left).to eq GoFishGame::REFILL_CARDS_AMOUNT
     end
   end
 end
