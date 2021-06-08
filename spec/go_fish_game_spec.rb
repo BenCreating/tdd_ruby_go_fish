@@ -175,6 +175,15 @@ describe 'GoFishGame' do
       winning_players = game.highest_scoring_players
       expect(winning_players).to match_array [player_1, player_2]
     end
+
+    it 'returns all players when all scores are equal' do
+      player_1 = GoFishPlayer.new(score: 0, name: 'Player 1')
+      player_2 = GoFishPlayer.new(score: 0, name: 'Player 2')
+      player_3 = GoFishPlayer.new(score: 0, name: 'Player 3')
+      game = GoFishGame.new([player_1, player_2, player_3], ShufflingDeck.new([]))
+      winning_players = game.highest_scoring_players
+      expect(winning_players).to match_array [player_1, player_2, player_3]
+    end
   end
 
   context '#all_players_out_of_cards?' do
