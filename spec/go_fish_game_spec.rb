@@ -1,5 +1,8 @@
 require_relative '../lib/go_fish_game'
 require_relative '../lib/go_fish_player'
+require_relative '../lib/shuffling_deck'
+require_relative '../lib/player_hand'
+require_relative '../lib/playing_card'
 
 describe 'GoFishGame' do
   let(:game) { GoFishGame.new }
@@ -52,6 +55,27 @@ describe 'GoFishGame' do
       expect(game.players[2].card_count).to eq GoFishGame::STARTING_CARD_COUNT * 2
     end
   end
+  context '#get_current_player' do
+    let(:players) { [GoFishPlayer.new, GoFishPlayer.new] }
+
+    it 'return player 1 on the first turn' do
+      game.start(players)
+      expect(game.get_current_player).to eq players[0]
+    end
+
+    it 'return player 2 on the second turn' do
+      game.start(players)
+      game.next_turn
+      expect(game.get_current_player).to eq players[1]
+    end
+
+    it 'return to player 2 when player 1 has no cards and cannot draw' do
+      skip_players = [GoFishPlayer.new(name: 'Player 1'), GoFishPlayer.new(name: 'Player 2', cards: PlayerHand.new([PlayingCard.new('A')]))]
+      game.start(skip_players, ShufflingDeck.new([]))
+      expect(game.get_current_player).to eq skip_players[1]
+    end
+  end
+
   context '#increment_turn_counter' do
     let(:players) { [GoFishPlayer.new, GoFishPlayer.new] }
     it 'adds 1 to the turn counter' do
