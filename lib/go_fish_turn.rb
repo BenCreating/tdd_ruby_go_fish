@@ -6,7 +6,7 @@ class GoFishTurn
     @all_players = all_players
   end
 
-  def play(target_player, target_rank = turn_player.cards[0].rank)
+  def play(target_player, target_rank = turn_player.cards.deck_ranks[0])
     turn_player.take_from(target_player, target_rank)
   end
 end
