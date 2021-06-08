@@ -9,7 +9,7 @@ class GoFishTurn
     @deck = deck
   end
 
-  def play(target_player, target_rank = turn_player.cards.deck_ranks[0])
+  def play(target_player = default_target_player(turn_player), target_rank = turn_player.cards.deck_ranks[0])
     refill_hand(turn_player)
     turn_player.take_from(target_player, target_rank)
     score = turn_player.cards.remove_card_set_and_return_score

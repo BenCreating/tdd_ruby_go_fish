@@ -30,7 +30,7 @@ class GoFishGame
   def next_turn
     current_player = get_current_player
     turn = GoFishTurn.new(current_player, players, deck)
-    turn.play(players[1])
+    turn.play
 
     increment_turn_counter
   end
